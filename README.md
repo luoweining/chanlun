@@ -21,10 +21,6 @@
 * 趋势
 * 多级别分析
 
-## 付费项目介绍
-
-[chanlun-pro](https://github.com/luoweining/chanlun/blob/main/README_PRO.md)
-
 ## 安装
 
 ### 用 pip 安装
@@ -97,13 +93,3 @@ python chanlun_a.py --code 000001 --freq 30 --start 2024-05-01 --end 2024-06-30
 ![Demo-1](https://github.com/luoweining/chanlun/raw/main/images/demo-1.png)
 
 **有 bug 请在这个页面提交： https://github.com/luoweining/chanlun/issues**
-
-**缠论交流，可加微信 【添加请备注： 缠论。否则不会添加通过】**
-
-![微信](https://github.com/luoweining/chanlun/raw/main/images/wx.jpg)
-
-### 赞助
-
-开发维护不易，如果觉得项目对你有帮助，还请多多支持
-
-![微信支付](https://github.com/luoweining/chanlun/raw/main/images/wx_pay.jpg)
