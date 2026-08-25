@@ -111,19 +111,32 @@ def fetch_akshare(code: str, freq: str, start: str, end: str, adjust: str) -> pd
     """通过 akshare（东方财富）拉取 A股 K线数据"""
     import akshare as ak
 
-    # 周期映射：d/w/m 对应日/周/月，分钟用数字
-    period = {"d": "daily", "w": "weekly", "m": "monthly"}.get(freq, freq)
-    start_fmt = start.replace("-", "")
-    end_fmt = end.replace("-", "")
+    # 复权方式映射：中文 -> akshare 参数（qfq=前复权 hfq=后复权 ''=不复权）
+    adjust_map = {"前复权": "qfq", "后复权": "hfq", "不复权": ""}
+    ak_adjust = adjust_map[adjust]
 
-    df = ak.stock_zh_a_hist(
-        symbol=code, period=period,
-        start_date=start_fmt, end_date=end_fmt, adjust=adjust,
-    )
+    if freq in ("5", "15", "30", "60"):
+        # 分钟线走 stock_zh_a_hist_min_em，历史更长
+        df = ak.stock_zh_a_hist_min_em(
+            symbol=code, period=freq,
+            start_date=f"{start} 00:00:00", end_date=f"{end} 23:59:59",
+            adjust=ak_adjust,
+        )
+    else:
+        # 日/周/月线走 stock_zh_a_hist
+        period = {"d": "daily", "w": "weekly", "m": "monthly"}[freq]
+        start_fmt = start.replace("-", "")
+        end_fmt = end.replace("-", "")
+        df = ak.stock_zh_a_hist(
+            symbol=code, period=period,
+            start_date=start_fmt, end_date=end_fmt, adjust=ak_adjust,
+        )
+
     if df.empty:
         raise RuntimeError(f"未获取到数据，请检查代码 {code} 与日期范围")
 
-    df = df.rename(columns={"日期": "date", "开盘": "open", "收盘": "close",
+    # 统一列名：分钟线是「时间」列，日/周/月线是「日期」列
+    df = df.rename(columns={"日期": "date", "时间": "date", "开盘": "open", "收盘": "close",
                             "最高": "high", "最低": "low", "成交量": "volume"})
     df["date"] = pd.to_datetime(df["date"])
     for col in ("open", "high", "low", "close", "volume"):
