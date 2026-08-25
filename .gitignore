@@ -186,3 +186,10 @@ cython_debug/
 .idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,python
+
+# 本地运行生成的图表与信号输出（run_demo.py / chanlun_a.py 产出）
+chart*.html
+signals_*.csv
+
+# 个人一键 fork/推送脚本（含本地路径与凭据逻辑）
+fork_push.sh
