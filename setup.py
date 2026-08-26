@@ -7,7 +7,6 @@ setuptools.setup(
     name="chanlun",
     version="1.2.0",
     author="Wang Xu",
-    author_email="1058715329@qq.com",
     description="基于缠论对过往行情数据进行分析的工具包。",
     long_description=long_description,
     long_description_content_type="text/markdown",
