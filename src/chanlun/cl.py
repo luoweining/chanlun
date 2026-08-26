@@ -87,10 +87,10 @@ class FX:
                 ld += 1
         elif self.type == 'di':
             if three_k.l > (two_k.l + (two_k.h - two_k.l) / 2):
-                # 第三个K线的低点，低于第二根的50%之上
+                # 第三个K线的低点，高于第二根的50%
                 ld += 1
             if three_k.h > one_k.h and three_k.h > two_k.h:
-                # 第三个最低点是三根中最低的
+                # 第三个最高点是三根中最高的
                 ld += 1
         return ld
 
