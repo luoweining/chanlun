@@ -109,11 +109,28 @@ def fetch_baostock(code: str, freq: str, start: str, end: str, adjust: str) -> p
 
 def fetch_akshare(code: str, freq: str, start: str, end: str, adjust: str) -> pd.DataFrame:
     """通过 akshare（东方财富）拉取 A股 K线数据"""
+    import os
+
     import akshare as ak
+    import requests
 
     # 复权方式映射：中文 -> akshare 参数（qfq=前复权 hfq=后复权 ''=不复权）
     adjust_map = {"前复权": "qfq", "后复权": "hfq", "不复权": ""}
     ak_adjust = adjust_map[adjust]
+
+    # 东财是境内站点，走系统代理（如 Clash/VPN）会被服务器掐断，这里强制 requests 直连
+    for _env in ("HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy", "ALL_PROXY", "all_proxy"):
+        os.environ.pop(_env, None)
+    os.environ["NO_PROXY"] = "*"
+    os.environ["no_proxy"] = "*"
+    _orig_request = requests.sessions.Session.request
+
+    def _request_direct(self, method, url, **kwargs):
+        # 忽略系统代理，直连
+        self.trust_env = False
+        return _orig_request(self, method, url, **kwargs)
+
+    requests.sessions.Session.request = _request_direct
 
     if freq in ("5", "15", "30", "60"):
         # 分钟线走 stock_zh_a_hist_min_em，历史更长
