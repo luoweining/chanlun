@@ -2,3 +2,7 @@ pandas
 numpy
 pyecharts
 TA-Lib
+
+# chanlun_a.py A股数据源
+baostock
+akshare
