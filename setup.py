@@ -12,9 +12,9 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
-    url="https://github.com/yijixiuxin/chanlun",
+    url="https://github.com/luoweining/chanlun",
     project_urls={
-        "Bug Tracker": "https://github.com/yijixiuxin/chanlun/issues",
+        "Bug Tracker": "https://github.com/luoweining/chanlun/issues",
     },
     install_requires=[
         "numpy", "pandas", "pyecharts", "TA-Lib"
