@@ -56,7 +56,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
     color_k_down = '#0CF49B'
     color_bi = '#FDDD60'
     color_bi_zs = '#FFFFFF'
-    color_bi_zs_up = '#993333'
+    color_bi_zs_up = '#FF8C00'
     color_bi_zs_down = '#99CC99'
 
     color_xd = '#FFA710'
@@ -386,7 +386,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
             "笔",
             line_bis['val'],
             label_opts=opts.LabelOpts(is_show=False),
-            linestyle_opts=opts.LineStyleOpts(width=1, color=color_bi),
+            linestyle_opts=opts.LineStyleOpts(is_show=True, width=1, color=color_bi),
         )
     )
     overlap_kline = overlap_kline.overlap(line_bi)
@@ -396,7 +396,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
             "笔",
             line_xu_bis['val'],
             label_opts=opts.LabelOpts(is_show=False),
-            linestyle_opts=opts.LineStyleOpts(width=1, type_='dashed', color=color_bi),
+            linestyle_opts=opts.LineStyleOpts(is_show=True, width=1, type_='dashed', color=color_bi),
         )
     )
     overlap_kline = overlap_kline.overlap(line_xu_bi)
@@ -407,7 +407,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
             "线段",
             line_xds['val'],
             label_opts=opts.LabelOpts(is_show=False),
-            linestyle_opts=opts.LineStyleOpts(width=2, color=color_xd)
+            linestyle_opts=opts.LineStyleOpts(is_show=True, width=2, color=color_xd)
         )
     )
     overlap_kline = overlap_kline.overlap(line_xd)
@@ -417,7 +417,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
             "线段",
             line_xu_xds['val'],
             label_opts=opts.LabelOpts(is_show=False),
-            linestyle_opts=opts.LineStyleOpts(width=2, type_='dashed', color=color_xd)
+            linestyle_opts=opts.LineStyleOpts(is_show=True, width=2, type_='dashed', color=color_xd)
         )
     )
     overlap_kline = overlap_kline.overlap(line_xu_xd)
@@ -428,7 +428,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
             "趋势",
             line_qss['val'],
             label_opts=opts.LabelOpts(is_show=False),
-            linestyle_opts=opts.LineStyleOpts(width=2, color=color_qs)
+            linestyle_opts=opts.LineStyleOpts(is_show=True, width=2, color=color_qs)
         )
     )
     overlap_kline = overlap_kline.overlap(line_qs)
@@ -438,7 +438,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
             "趋势",
             line_xu_qss['val'],
             label_opts=opts.LabelOpts(is_show=False),
-            linestyle_opts=opts.LineStyleOpts(width=2, type_='dashed', color=color_qs)
+            linestyle_opts=opts.LineStyleOpts(is_show=True, width=2, type_='dashed', color=color_qs)
         )
     )
     overlap_kline = overlap_kline.overlap(line_xu_qs)
@@ -450,19 +450,19 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
                 series_name="BOLL",
                 is_symbol_show=False,
                 y_axis=idx['boll']['up'],
-                linestyle_opts=opts.LineStyleOpts(width=1, color='#99CC99'),
+                linestyle_opts=opts.LineStyleOpts(is_show=True, width=1, color='#99CC99'),
                 label_opts=opts.LabelOpts(is_show=False),
             ).add_yaxis(
                 series_name="BOLL",
                 is_symbol_show=False,
                 y_axis=idx['boll']['mid'],
-                linestyle_opts=opts.LineStyleOpts(width=1, color='#FF6D00'),
+                linestyle_opts=opts.LineStyleOpts(is_show=True, width=1, color='#FF6D00'),
                 label_opts=opts.LabelOpts(is_show=False),
             ).add_yaxis(
                 series_name="BOLL",
                 is_symbol_show=False,
                 y_axis=idx['boll']['low'],
-                linestyle_opts=opts.LineStyleOpts(width=1, color='#99CC99'),
+                linestyle_opts=opts.LineStyleOpts(is_show=True, width=1, color='#99CC99'),
                 label_opts=opts.LabelOpts(is_show=False),
             ).set_global_opts()
         )
@@ -473,7 +473,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
                 series_name="MA",
                 is_symbol_show=False,
                 y_axis=idx['ma'],
-                linestyle_opts=opts.LineStyleOpts(width=1, color='red'),
+                linestyle_opts=opts.LineStyleOpts(is_show=True, width=1, color='red'),
                 label_opts=opts.LabelOpts(is_show=False),
             ).set_global_opts()
         )
@@ -487,7 +487,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
                 zs[1],
                 symbol=None,
                 label_opts=opts.LabelOpts(is_show=False),
-                linestyle_opts=opts.LineStyleOpts(width=zs[3], color=zs[2]),
+                linestyle_opts=opts.LineStyleOpts(is_show=True, width=zs[3], color=zs[2]),
                 areastyle_opts=opts.AreaStyleOpts(opacity=0.1, color=zs[2]),
                 tooltip_opts=opts.TooltipOpts(is_show=False),
             )
@@ -501,7 +501,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
                 zs[1],
                 symbol=None,
                 label_opts=opts.LabelOpts(is_show=False),
-                linestyle_opts=opts.LineStyleOpts(width=zs[3], color=zs[2]),
+                linestyle_opts=opts.LineStyleOpts(is_show=True, width=zs[3], color=zs[2]),
                 tooltip_opts=opts.TooltipOpts(is_show=False),
             )
         )
@@ -670,14 +670,14 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
 
     grid_chart.add(
         overlap_kline,
-        grid_opts=opts.GridOpts(width="96%", height="75%", pos_left='1%', pos_right='3%'),
+        grid_opts=opts.GridOpts(width="100%", height="75%", pos_left='0%', pos_right='0%'),
     )
 
     # Volumn 柱状图
     grid_chart.add(
         bar_vols,
         grid_opts=opts.GridOpts(
-            pos_bottom="15%", height="10%", width="96%", pos_left='1%', pos_right='3%'
+            pos_bottom="15%", height="10%", width="100%", pos_left='0%', pos_right='0%'
         ),
     )
 
@@ -685,7 +685,7 @@ def render_charts(title, cl_data: cl.CL, show_num=500, orders=[], config=None):
     grid_chart.add(
         macd_bar_line,
         grid_opts=opts.GridOpts(
-            pos_bottom="0", height="15%", width="96%", pos_left='1%', pos_right='3%'
+            pos_bottom="0", height="15%", width="100%", pos_left='0%', pos_right='0%'
         ),
     )
     if "JPY_PARENT_PID" in os.environ:
